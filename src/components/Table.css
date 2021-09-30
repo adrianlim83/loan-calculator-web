@@ -1,25 +1,16 @@
-table {
-    border-spacing: 0;
-    border: 1px solid black;
+html,body {
+    font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
+    width:100%;
+    margin:0;
+    padding:0;
+}
+table{
+    width:100%;
+}
 
-    tr {
-        :last-child {
-            td {
-                border-bottom: 0;
-            }
-        }
-    }
-
-    th,
-    td {
-        margin: 0;
-        padding: 1rem;
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
-        
-
-        :last-child {
-            border-right: 0;
-        }
-    }
+table thead tr {
+    borderBottom: solid 3px blue;
+    background: blue;
+    color: white;
+    fontWeight: bold;
 }

@@ -70,7 +70,7 @@ console.log(results.data)
     const { push } = useHistory()
     
     return (
-            <div className="Results">
+            <div>
                 <Table columns={columns} data={results} />
                 <button
                     type="button"

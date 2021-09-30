@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./Quote.css";
 import { useHistory } from 'react-router-dom';
 
 function Quote() {
