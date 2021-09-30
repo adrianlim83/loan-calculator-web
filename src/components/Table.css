@@ -1,16 +1,18 @@
-html,body {
-    font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
-    width:100%;
-    margin:0;
-    padding:0;
+html,
+body {
+  font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana,
+    sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
-table{
-    width:100%;
+table {
+  width: 100%;
 }
 
 table thead tr {
-    borderBottom: solid 3px blue;
-    background: blue;
-    color: white;
-    fontWeight: bold;
+  borderbottom: solid 3px blue;
+  background: blue;
+  color: white;
+  fontweight: bold;
 }
