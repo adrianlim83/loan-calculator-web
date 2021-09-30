@@ -54,12 +54,12 @@ function Quote() {
                     <NumberInput
                         name="terms"
                         value={quote.terms}
-                        onChange={event => {
-                                quote.terms = event.target.value;
-                                onApproximatePayment();
-                            }}
+                        onChangeEvent={v => {
+                            quote.terms = v;
+                            onApproximatePayment();
+                        }}
                         required="true"
-                        decimal="false"/>
+                        allowDecimals="false"/>
             
                     <label>
                         Loan Amount:
@@ -67,10 +67,10 @@ function Quote() {
                     <NumberInput
                         name="loanAmount"
                         value={quote.loanAmount}
-                        onChange={event => {
-                                quote.loanAmount = event.target.value;
-                                onApproximatePayment();
-                            }}
+                        onChangeEvent={v => {
+                            quote.loanAmount = v;
+                            onApproximatePayment();
+                        }}
                         required="true" />
             
                     <label>
@@ -79,10 +79,10 @@ function Quote() {
                     <NumberInput
                         name="interestRate"
                         value={quote.interestRate}
-                        onChange={event => {
-                                quote.interestRate = event.target.value;
-                                onApproximatePayment();
-                            }}
+                        onChangeEvent={v => {
+                            quote.interestRate = v;
+                            onApproximatePayment();
+                        }}
                         required="true" />
             
                     <label>
@@ -91,10 +91,10 @@ function Quote() {
                     <NumberInput
                         name="residualValue"
                         value={quote.residualValue}
-                        onChange={event => {
-                                quote.residualValue = event.target.value;
-                                onApproximatePayment();
-                            }}
+                        onChangeEvent={v => {
+                            quote.residualValue = v;
+                            onApproximatePayment();
+                        }}
                         required="true" />
             
                     <button>
