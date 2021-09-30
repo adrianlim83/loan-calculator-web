@@ -58,8 +58,8 @@ function Quote() {
                             quote.terms = v;
                             onApproximatePayment();
                         }}
-                        required="true"
-                        allowDecimals="false"/>
+                        required={true}
+                        allowDecimals={false}/>
             
                     <label>
                         Loan Amount:
@@ -71,7 +71,7 @@ function Quote() {
                             quote.loanAmount = v;
                             onApproximatePayment();
                         }}
-                        required="true" />
+                        required={true} />
             
                     <label>
                         Annual Interest Rate:
@@ -83,7 +83,7 @@ function Quote() {
                             quote.interestRate = v;
                             onApproximatePayment();
                         }}
-                        required="true" />
+                        required={true} />
             
                     <label>
                         Residual Value:
@@ -95,7 +95,7 @@ function Quote() {
                             quote.residualValue = v;
                             onApproximatePayment();
                         }}
-                        required="true" />
+                        required={true} />
             
                     <button>
                         Save

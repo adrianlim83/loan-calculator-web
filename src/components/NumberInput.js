@@ -24,7 +24,7 @@ export default class NumberInput extends React.Component {
                     required='{this.props.required}'
                     step="any"
                     onKeyPress={(event) => {
-                        if (this.props.allowDecimals.trim().toLowerCase() === 'false' && !/[0-9]/.test(event.key)) {
+                        if (!this.props.allowDecimals && !/[0-9]/.test(event.key)) {
                             event.preventDefault();
                         }
                     }}
@@ -35,14 +35,14 @@ export default class NumberInput extends React.Component {
 }
 
 NumberInput.defaultProps = {
-    required: 'false',
-    allowDecimals: 'true',
+    required: false,
+    allowDecimals: true,
     value: ''
 };
 
 NumberInput.propTypes = {
     name: PropTypes.string,
-    required: PropTypes.string,
-    allowDecimals: PropTypes.string,
+    required: PropTypes.bool,
+    allowDecimals: PropTypes.bool,
     onChangeEvent: PropTypes.func // Handle event upon value change
 };
