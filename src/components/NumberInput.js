@@ -13,6 +13,7 @@ function NumberInput( {onChange, name, value, required, decimal}) {
                 defaultValue={value}
                 onChange={event => onInputChange(event)}
                 required='{required}'
+                step="any"
                 onKeyPress={(event) => {
                         if (decimal && !/[0-9]/.test(event.key)) {
                             event.preventDefault();
