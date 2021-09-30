@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "./Quote.css";
 import { useHistory } from 'react-router-dom';
+import NumberInput from "./NumberInput";
 
 function Quote() {
     const [quote, setQuote] = useState({
@@ -50,50 +51,51 @@ function Quote() {
                     <label>
                         Term (in months):
                     </label>
-                    <input
+                    <NumberInput
                         name="terms"
-                        defaultValue={quote.terms}
+                        value={quote.terms}
                         onChange={event => {
-                                        quote.terms = event.target.value;
-                                        onApproximatePayment();
-                                    }}
-                        required />
+                                quote.terms = event.target.value;
+                                onApproximatePayment();
+                            }}
+                        required="true"
+                        decimal="false"/>
             
                     <label>
                         Loan Amount:
                     </label>
-                    <input
+                    <NumberInput
                         name="loanAmount"
-                        defaultValue={quote.loanAmount}
+                        value={quote.loanAmount}
                         onChange={event => {
                                 quote.loanAmount = event.target.value;
                                 onApproximatePayment();
                             }}
-                        required />
+                        required="true" />
             
                     <label>
                         Annual Interest Rate:
                     </label>
-                    <input
+                    <NumberInput
                         name="interestRate"
-                        defaultValue={quote.interestRate}
+                        value={quote.interestRate}
                         onChange={event => {
                                 quote.interestRate = event.target.value;
                                 onApproximatePayment();
-                            }}                            
-                        required />
+                            }}
+                        required="true" />
             
                     <label>
                         Residual Value:
                     </label>
-                    <input
+                    <NumberInput
                         name="residualValue"
-                        defaultValue={quote.residualValue}
+                        value={quote.residualValue}
                         onChange={event => {
                                 quote.residualValue = event.target.value;
                                 onApproximatePayment();
                             }}
-                        required />
+                        required="true" />
             
                     <button>
                         Save
