@@ -3,6 +3,8 @@ import "./Quote.css";
 import { useHistory } from "react-router-dom";
 import NumberInput from "./NumberInput";
 import { addQuote, getApproximateQuote } from "../actions/quotes";
+import ReactDOM from "react-dom";
+import ErrorMessage from "./ErrorMessage";
 
 /**
  * A component/ container page which allowed user to input the quote for estimation payment or final payment
@@ -21,6 +23,7 @@ function Quote() {
     residualValue: 0.0,
   });
   const [loanPaymentAmount, setLoanPaymentAmount] = useState(0);
+  const [errorMessage, setErrorMessage] = useState();  
 
   const { push } = useHistory();
 
@@ -33,9 +36,11 @@ function Quote() {
     e.preventDefault(); // Stop form submit
 
     addQuote(quote)
-      .then(push("/"))
+      .then((response) => {
+        push("/");
+      })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(error.message);
       });
   };
 
@@ -49,7 +54,7 @@ function Quote() {
         setLoanPaymentAmount(response.paymentAmount);
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(error.message);
       });
   };
 
@@ -59,6 +64,7 @@ function Quote() {
   return (
     <form onSubmit={onSave}>
       <h1>Calculate Loan Payment</h1>
+      <ErrorMessage message={errorMessage} />
       <div className="loan-payment">
         <label>Term (in months):</label>
         <NumberInput

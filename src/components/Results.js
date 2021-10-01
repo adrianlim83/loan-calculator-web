@@ -54,12 +54,12 @@ function Results({ quotes }) {
    * With a "New Qoute" button, which navigate user to enter new quote page (through router) when pressed
    */
   return (
-    <div>
+    <>
       <Table columns={columns} data={quotes} />
       <button type="button" onClick={() => push("/quote")}>
         New Quote
       </button>
-    </div>
+    </>
   );
 }
 
