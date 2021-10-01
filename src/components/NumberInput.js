@@ -1,6 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Extended React component to render a specific input html tag
+ * which accept decimal or non decimal, event function binding, and any
+ * reusable attributes we can simplify on top of html input
+ */
 export default class NumberInput extends React.Component {
   constructor(props) {
     super(props);
@@ -34,12 +39,18 @@ export default class NumberInput extends React.Component {
   }
 }
 
+/**
+ * Declare default props' value if it doesn't supply
+ */
 NumberInput.defaultProps = {
   required: false,
   allowDecimals: true,
   value: "",
 };
 
+/**
+ * Contains the specific props type that can be passing
+ */
 NumberInput.propTypes = {
   name: PropTypes.string,
   required: PropTypes.bool,

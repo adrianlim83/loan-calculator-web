@@ -5,6 +5,13 @@ import { useHistory } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+/**
+ * Receive the quotes result from redux states, then render the table.
+ * 
+ * @param {*} param0 - quotes result retrieved through redux state
+ * 
+ * @returns results page
+ */
 function Results({ quotes }) {
   console.log("Received quote:");
   console.log(quotes);
@@ -42,6 +49,10 @@ function Results({ quotes }) {
 
   const { push } = useHistory();
 
+  /**
+   * Render the results through Table component
+   * With a "New Qoute" button, which navigate user to enter new quote page (through router) when pressed
+   */
   return (
     <div>
       <Table columns={columns} data={quotes} />
@@ -52,6 +63,11 @@ function Results({ quotes }) {
   );
 }
 
+/**
+ * Connect and retrieve the quotes result through redux state
+ * @param {*} state - state from redux state
+ * @returns 
+ */
 const mapStateToProps = (state) => {
   return { quotes: state.quotes };
 };

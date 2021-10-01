@@ -1,6 +1,12 @@
 import { useTable } from "react-table";
 import "./Table.css";
 
+/**
+ * A reusable Table component for rendering
+ * 
+ * @param {*} param0 - contains columns and data in json format
+ * @returns 
+ */
 export default function Table({ columns, data }) {
   // Table component logic and UI come here
   // Use the useTable Hook to send the columns and data to build the table

@@ -1,14 +1,16 @@
 import axios from "axios";
 import store from "../store/quotes";
 
+/**
+ * An action to fetch quotes result from server api, with the outcome, dispatch it to redux store
+ */
 export async function fetchQuotes() {
-  // Sample payment details from loan calculator api
+  // Sample quote request from loan calculator api
   //        [{
   //            "terms": 36,
   //            "loanAmount": 100000.0,
   //            "interestRate": 0.1,
-  //            "residentialValue": 0.0,
-  //            "exact": true,
+  //            "residualValue": 0.0,
   //            "paymentAmount": 3226.72
   //        }]
   const response = await axios.get(
@@ -26,6 +28,12 @@ export async function fetchQuotes() {
   store.dispatch({ type: "LOAD_QUOTES", payload: response.data });
 }
 
+/**
+ * An action to submit the final quote request to server api for calculating the actual payment, with the outcome, dispatch it to redux store for state
+ * update
+ * 
+ * @param {*} quote - quote contains terms, loan amount, interest rate and residual value
+ */
 export async function addQuote(quote) {
   const response = await axios.post(
     "http://localhost:8080/api/loan/payment/quote",
@@ -43,6 +51,13 @@ export async function addQuote(quote) {
   store.dispatch({ type: "ADD_QUOTE", payload: response.data });
 }
 
+/**
+ * An action to get and return an approximate quote from server api to react component for quote estimation.
+ * No redux store will be required here.
+ * 
+ * @param {*} quote - quote contains terms, loan amount, interest rate and residual value
+ * @returns 
+ */
 export async function getApproximateQuote(quote) {
   quote.timestamp = new Date().getTime();
   const response = await axios.get(

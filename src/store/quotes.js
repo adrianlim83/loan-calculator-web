@@ -1,5 +1,8 @@
 import { createStore } from "redux";
 
+/**
+ * Default state declaration on redux store
+ */
 const initialState = {
     quotes: [],
     signUpModal: {
@@ -7,6 +10,13 @@ const initialState = {
     }
 }
 
+/**
+ * Update redux state through reducer
+ * 
+ * @param {*} state - immutable state for page/ component update when there is changes depending on action
+ * @param {*} action - an action contains type of changes, and payload for update
+ * @returns 
+ */
 const reducer = (state = initialState, action) => {
 
     if (action.type === 'ADD_QUOTE') {
@@ -24,6 +34,9 @@ const reducer = (state = initialState, action) => {
     return state;
 }
 
+/**
+ * Create a store reducer
+ */
 const store = createStore(reducer);
 
 export default store;

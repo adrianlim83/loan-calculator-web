@@ -4,7 +4,16 @@ import { useHistory } from "react-router-dom";
 import NumberInput from "./NumberInput";
 import { addQuote, getApproximateQuote } from "../actions/quotes";
 
+/**
+ * A component/ container page which allowed user to input the quote for estimation payment or final payment
+ * if they are happy with the outcome
+ * 
+ * @returns quote page
+ */
 function Quote() {
+  /**
+   * Default value binded to the component
+   */
   const [quote] = useState({
     terms: 36,
     loanAmount: 100000.0,
@@ -15,6 +24,11 @@ function Quote() {
 
   const { push } = useHistory();
 
+  /**
+   * Invoke an action to submit the final quote when user press on save button.
+   * If it success, navigate the link to Results component through router
+   * @param {*} e - event
+   */
   const onSave = (e) => {
     e.preventDefault(); // Stop form submit
 
@@ -25,6 +39,10 @@ function Quote() {
       });
   };
 
+  /**
+   * Invoke an action to calculate the approximate quote when the user changing the
+   * quote request. If it success, loan payment amount tag will be updated through state
+   */
   const onApproximatePayment = () => {
     getApproximateQuote(quote)
       .then((response) => {
@@ -35,6 +53,9 @@ function Quote() {
       });
   };
 
+  /**
+   * Page containinig the quote form
+   */
   return (
     <form onSubmit={onSave}>
       <h1>Calculate Loan Payment</h1>
