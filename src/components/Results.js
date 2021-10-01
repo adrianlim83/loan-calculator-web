@@ -1,38 +1,13 @@
 import React, { useMemo, useState, useEffect } from "react";
-import axios from "axios";
 import Table from "./Table";
 import "./Results.css";
 import { useHistory } from "react-router-dom";
 
-function Results() {
-  const [results, setResults] = useState([]);
+import { connect } from "react-redux";
 
-  useEffect(() => {
-    async function fetchData() {
-      // Sample payment details from loan calculator api
-      //        {
-      //            "terms": 36,
-      //            "loanAmount": 100000.0,
-      //            "interestRate": 0.1,
-      //            "residentialValue": 0.0,
-      //            "exact": true,
-      //            "paymentAmount": 3226.72
-      //        }
-      const results = await axios.get(
-        "http://localhost:8080/api/loan/payment/quote/list",
-        {
-          params: {
-            timestamp: new Date().getTime(),
-          },
-        }
-      );
-      console.log("test: ");
-      console.log(results.data);
-      setResults(results.data);
-    }
-
-    fetchData();
-  }, []);
+function Results({ quotes }) {
+  console.log("Received quote:");
+  console.log(quotes);
 
   const columns = useMemo(
     () => [
@@ -65,13 +40,11 @@ function Results() {
     []
   );
 
-  console.log(results);
-
   const { push } = useHistory();
 
   return (
     <div>
-      <Table columns={columns} data={results} />
+      <Table columns={columns} data={quotes} />
       <button type="button" onClick={() => push("/quote")}>
         New Quote
       </button>
@@ -79,4 +52,8 @@ function Results() {
   );
 }
 
-export default Results;
+const mapStateToProps = (state) => {
+  return { quotes: state.quotes };
+};
+
+export default connect(mapStateToProps)(Results);

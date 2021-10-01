@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./Quote.css";
 import { useHistory } from "react-router-dom";
 import NumberInput from "./NumberInput";
+import { addQuote, getApproximateQuote } from "../actions/quotes";
 
 function Quote() {
   const [quote] = useState({
@@ -18,30 +18,17 @@ function Quote() {
   const onSave = (e) => {
     e.preventDefault(); // Stop form submit
 
-    const headers = {
-      "Content-Type": "application/json",
-    };
-
-    axios
-      .post("http://localhost:8080/api/loan/payment/quote", quote, {
-        headers: headers,
-      })
-      .then((response) => {
-        push("/");
-      })
+    addQuote(quote)
+      .then(push("/"))
       .catch((error) => {
         console.log(error);
       });
   };
 
   const onApproximatePayment = () => {
-    quote.timestamp = new Date().getTime();
-    axios
-      .get("http://localhost:8080/api/loan/approx/payment/quote", {
-        params: quote,
-      })
+    getApproximateQuote(quote)
       .then((response) => {
-        setLoanPaymentAmount(response.data.paymentAmount);
+        setLoanPaymentAmount(response.paymentAmount);
       })
       .catch((error) => {
         console.log(error);
