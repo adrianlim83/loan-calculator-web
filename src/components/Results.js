@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import Table from "./Table";
 import "./Results.css";
 import { useHistory } from "react-router-dom";

@@ -11,8 +11,8 @@ table {
 }
 
 table thead tr {
-  borderbottom: solid 3px blue;
+  border-bottom: solid 3px blue;
   background: blue;
   color: white;
-  fontweight: bold;
+  font-weight: bold;
 }

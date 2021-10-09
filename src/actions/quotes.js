@@ -1,5 +1,5 @@
-import axios from "axios";
 import store from "../store/quotes";
+import axiosInstance from "../extensions/axios";
 
 /**
  * An action to fetch quotes result from server api, with the outcome, dispatch it to redux store
@@ -13,8 +13,8 @@ export async function fetchQuotes() {
   //            "residualValue": 0.0,
   //            "paymentAmount": 3226.72
   //        }]
-  const response = await axios.get(
-    "http://localhost:8080/api/loan/payment/quote/list",
+  const response = await axiosInstance.get(
+    "/loan/payment/quote/list",
     {
       params: {
         timestamp: new Date().getTime(),
@@ -35,8 +35,8 @@ export async function fetchQuotes() {
  * @param {*} quote - quote contains terms, loan amount, interest rate and residual value
  */
 export async function addQuote(quote) {
-  const response = await axios.post(
-    "http://localhost:8080/api/loan/payment/quote",
+  const response = await axiosInstance.post(
+    "/loan/payment/quote",
     quote,
     {
       headers: {
@@ -60,8 +60,8 @@ export async function addQuote(quote) {
  */
 export async function getApproximateQuote(quote) {
   quote.timestamp = new Date().getTime();
-  const response = await axios.get(
-    "http://localhost:8080/api/loan/approx/payment/quote",
+  const response = await axiosInstance.get(
+    "/loan/approx/payment/quote",
     {
       params: quote,
     }

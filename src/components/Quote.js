@@ -3,7 +3,6 @@ import "./Quote.css";
 import { useHistory } from "react-router-dom";
 import NumberInput from "./NumberInput";
 import { addQuote, getApproximateQuote } from "../actions/quotes";
-import ReactDOM from "react-dom";
 import ErrorMessage from "./ErrorMessage";
 
 /**
@@ -49,6 +48,7 @@ function Quote() {
    * quote request. If it success, loan payment amount tag will be updated through state
    */
   const onApproximatePayment = () => {
+    setErrorMessage('');
     getApproximateQuote(quote)
       .then((response) => {
         setLoanPaymentAmount(response.paymentAmount);
