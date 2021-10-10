@@ -14,12 +14,7 @@ export async function fetchQuotes() {
   //            "paymentAmount": 3226.72
   //        }]
   const response = await axiosInstance.get(
-    "/loan/payment/quote/list",
-    {
-      params: {
-        timestamp: new Date().getTime(),
-      },
-    }
+    "/loan/payment/quote/list"
   );
 
   console.log("Fetch Quotes:");
@@ -59,7 +54,6 @@ export async function addQuote(quote) {
  * @returns 
  */
 export async function getApproximateQuote(quote) {
-  quote.timestamp = new Date().getTime();
   const response = await axiosInstance.get(
     "/loan/approx/payment/quote",
     {
