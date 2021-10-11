@@ -7,7 +7,7 @@ import Results from "./components/Results";
  * Import redux's provider and store
  */
 import { Provider } from "react-redux";
-import store from "./store/quotes";
+import store from "./redux/store";
 import { fetchQuotes } from "./actions/quotes";
 window.store = store;
 

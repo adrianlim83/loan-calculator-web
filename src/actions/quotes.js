@@ -1,4 +1,4 @@
-import store from "../store/quotes";
+import store from "../redux/store";
 import axiosInstance from "../extensions/axios";
 
 /**
