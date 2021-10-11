@@ -8,9 +8,8 @@
 export default function quotes(state = [], action) {
   switch (action.type) {
     case "ADD_QUOTE":
-      return state.concat(action.payload);
     case "LOAD_QUOTES":
-      return state.concat(action.payload);
+            return state.concat(action.payload);
     default:
       return state;
   }
