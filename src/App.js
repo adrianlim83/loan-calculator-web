@@ -1,5 +1,4 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { useEffect } from "react";
 import Quote from "./components/Quote";
 import Results from "./components/Results";
 
@@ -9,16 +8,13 @@ import Results from "./components/Results";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { fetchQuotes } from "./actions/quotes";
-window.store = store;
 
 function App() {
   /**
    * Invoke fetch quotes' action during state reset.
    * For instance, when the user reloading the page
    */
-  useEffect(() => {
-    fetchQuotes();
-  }, []);
+  store.dispatch(fetchQuotes());
 
   return (
     /**

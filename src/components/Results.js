@@ -69,7 +69,7 @@ function Results({ quotes }) {
  * @returns 
  */
 const mapStateToProps = (state) => {
-  return { quotes: state.quotes };
+  return { quotes: state.quotes.data };
 };
 
 export default connect(mapStateToProps)(Results);
