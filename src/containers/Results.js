@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
-import Table from "./Table";
+import Table from "../components/Table";
 import "./Results.css";
-import { useHistory } from "react-router-dom";
+import { useQuery } from "react-query";
+import { fetchQuotes } from "../actions/quotes";
 
-import { connect } from "react-redux";
 
 /**
  * Receive the quotes result from redux states, then render the table.
@@ -12,9 +12,9 @@ import { connect } from "react-redux";
  * 
  * @returns results page
  */
-function Results({ quotes }) {
-  console.log("Received quote:");
-  console.log(quotes);
+function Results() {
+
+  const {data, status} = useQuery("results", fetchQuotes);
 
   const columns = useMemo(
     () => [
@@ -46,30 +46,18 @@ function Results({ quotes }) {
     ],
     []
   );
-
-  const { push } = useHistory();
-
-  /**
+  console.log(data)
+/**
    * Render the results through Table component
    * With a "New Qoute" button, which navigate user to enter new quote page (through router) when pressed
    */
   return (
     <>
-      <Table columns={columns} data={quotes} />
-      <button type="button" onClick={() => push("/quote")}>
-        New Quote
-      </button>
+      {status === 'loading' && (<div>Loading data...</div>)}
+      {status === 'error' && (<div>Error fetching results</div>)}
+      {status === 'success' && (<Table columns={columns} data={data} />)}
     </>
   );
 }
 
-/**
- * Connect and retrieve the quotes result through redux state
- * @param {*} state - state from redux state
- * @returns 
- */
-const mapStateToProps = (state) => {
-  return { quotes: state.quotes.data };
-};
-
-export default connect(mapStateToProps)(Results);
+export default Results;
