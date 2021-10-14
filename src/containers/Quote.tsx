@@ -11,26 +11,27 @@ import { useMutation } from "react-query";
  *
  * @returns quote page
  */
-function Quote({ setPage }) {
+const Quote = (param: QuoteParam) => {
   /**
-   * Default value binded to the component
+   * Default quote state binded to the component
    */
-  const [quote] = useState({
+  const [quote] = useState<QuoteState>({
     terms: 36,
     loanAmount: 100000.0,
     interestRate: 10,
     residualValue: 0.0,
+    paymentAmount: 0
   });
 
   /**
    * Mutate the quote creation upon saving
    */
-  const finalQuoteMutation = useMutation(addQuote);
+  const finalQuoteMutation = useMutation<QuoteState, Error, QuoteState>(addQuote);
 
   /**
    * Mutate the quote estimation upon changes
    */
-  const approximateQuoteMutation = useMutation(() =>
+  const approximateQuoteMutation = useMutation<QuoteState, Error, QuoteState>(() =>
     getApproximateQuote(quote)
   );
 
@@ -43,16 +44,16 @@ function Quote({ setPage }) {
       {finalQuoteMutation.isError && (
         <ErrorMessage message={finalQuoteMutation.error.message} />
       )}
-      {finalQuoteMutation.isSuccess && setPage("results")}
+      {finalQuoteMutation.isSuccess && param.setPage("results")}
 
       <h1>Calculate Loan Payment</h1>
       <div className="loan-payment">
         <label>Term (in months):</label>
         <NumberInput
           name="terms"
-          value={quote.terms}
+          value={String(quote.terms)}
           onChangeEvent={(v) => {
-            quote.terms = v;
+            quote.terms = parseInt(v);
             approximateQuoteMutation.mutate(quote);
           }}
           required={true}
@@ -62,9 +63,9 @@ function Quote({ setPage }) {
         <label>Loan Amount:</label>
         <NumberInput
           name="loanAmount"
-          value={quote.loanAmount}
+          value={String(quote.loanAmount)}
           onChangeEvent={(v) => {
-            quote.loanAmount = v;
+            quote.loanAmount = parseFloat(v);
             approximateQuoteMutation.mutate(quote);
           }}
           required={true}
@@ -73,9 +74,9 @@ function Quote({ setPage }) {
         <label>Annual Interest Rate:</label>
         <NumberInput
           name="interestRate"
-          value={quote.interestRate}
+          value={String(quote.interestRate)}
           onChangeEvent={(v) => {
-            quote.interestRate = v;
+            quote.interestRate = parseFloat(v);
             approximateQuoteMutation.mutate(quote);
           }}
           required={true}
@@ -84,9 +85,9 @@ function Quote({ setPage }) {
         <label>Residual Value:</label>
         <NumberInput
           name="residualValue"
-          value={quote.residualValue}
+          value={String(quote.residualValue)}
           onChangeEvent={(v) => {
-            quote.residualValue = v;
+            quote.residualValue = parseFloat(v);
             approximateQuoteMutation.mutate(quote);
           }}
           required={true}
@@ -106,6 +107,18 @@ function Quote({ setPage }) {
       </div>
     </>
   );
+};
+
+interface QuoteParam {
+  setPage: (page: string) => void;
+}
+
+interface QuoteState {
+  terms: number;
+  loanAmount: number;
+  interestRate: number;
+  residualValue: number;
+  paymentAmount: number;
 }
 
 export default Quote;
