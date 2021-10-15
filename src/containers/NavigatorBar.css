@@ -1,0 +1,29 @@
+.navigation-bar {
+  background: #f9fafb;
+  list-style: none;
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+ul li a {
+  text-decoration: none;
+  background-color: #98d8f4;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  margin: 0.1rem;
+}
+
+ul li a:hover {
+  background-color: #0a66c2;
+  color: #fff;
+}
+
+.active {
+  background: #0a66c2;
+}

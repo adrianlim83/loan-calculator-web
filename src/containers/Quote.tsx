@@ -4,6 +4,7 @@ import NumberInput from "../components/NumberInput";
 import { addQuote, getApproximateQuote } from "../actions/quotes";
 import ErrorMessage from "../components/ErrorMessage";
 import { useMutation } from "react-query";
+import { useHistory } from "react-router";
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
@@ -11,7 +12,7 @@ import { useMutation } from "react-query";
  *
  * @returns quote page
  */
-const Quote = (param: QuoteParam) => {
+const Quote = () => {
   /**
    * Default quote state binded to the component
    */
@@ -35,6 +36,8 @@ const Quote = (param: QuoteParam) => {
     getApproximateQuote(quote)
   );
 
+  const { push } = useHistory();
+
   /**
    * Page containing quote form
    */
@@ -44,9 +47,9 @@ const Quote = (param: QuoteParam) => {
       {finalQuoteMutation.isError && (
         <ErrorMessage message={finalQuoteMutation.error.message} />
       )}
-      {finalQuoteMutation.isSuccess && param.setPage("results")}
+      {finalQuoteMutation.isSuccess && push("/")}
 
-      <h1>Calculate Loan Payment</h1>
+      <h2>Calculate Loan Payment</h2>
       <div className="loan-payment">
         <label>Term (in months):</label>
         <NumberInput
@@ -108,10 +111,6 @@ const Quote = (param: QuoteParam) => {
     </>
   );
 };
-
-interface QuoteParam {
-  setPage: (page: string) => void;
-}
 
 interface QuoteState {
   terms: number;

@@ -2,17 +2,16 @@ html,
 body {
   font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana,
     sans-serif;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  width: 90%;
+  margin: 1rem;
 }
 table {
   width: 100%;
 }
 
 table thead tr {
-  border-bottom: solid 3px blue;
-  background: blue;
+  border-bottom: solid 3px #0a66c2;
+  background: #0a66c2;
   color: white;
   font-weight: bold;
 }
