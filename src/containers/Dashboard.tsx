@@ -8,14 +8,18 @@ const Dashboard = (props: DashboardProp) => {
   const queryClient = new QueryClient();
 
   return (
-      <QueryClientProvider client={queryClient}>
-          <NavigatorBar token={props.token} setToken={props.setToken} remove={props.remove}/>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <NavigatorBar
+        token={props.token}
+        setToken={props.setToken}
+        remove={props.remove}
+      />
+    </QueryClientProvider>
   );
 };
 
 interface DashboardProp {
-  token: TokenProp
+  token: any;
   setToken: (token: TokenProp) => void;
   remove: () => void;
 }

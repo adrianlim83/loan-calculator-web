@@ -21,19 +21,21 @@ const Quote = () => {
     loanAmount: 100000.0,
     interestRate: 10,
     residualValue: 0.0,
-    paymentAmount: 0
+    paymentAmount: 0,
   });
 
   /**
    * Mutate the quote creation upon saving
    */
-  const finalQuoteMutation = useMutation<QuoteState, Error, QuoteState>(addQuote);
+  const finalQuoteMutation = useMutation<QuoteState, Error, QuoteState>(
+    addQuote
+  );
 
   /**
    * Mutate the quote estimation upon changes
    */
-  const approximateQuoteMutation = useMutation<QuoteState, Error, QuoteState>(() =>
-    getApproximateQuote(quote)
+  const approximateQuoteMutation = useMutation<QuoteState, Error, QuoteState>(
+    () => getApproximateQuote(quote)
   );
 
   const { push } = useHistory();

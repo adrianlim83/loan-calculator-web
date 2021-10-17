@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { login } from "./actions/credential";
-import ErrorMessage from "./components/ErrorMessage";
+import { login } from "../actions/credential";
+import ErrorMessage from "../components/ErrorMessage";
 import "./Login.css";
 
 const Login = (props: LoginProp) => {
@@ -15,7 +15,7 @@ const Login = (props: LoginProp) => {
    */
   const loginMutation = useMutation<TokenProp, Error, LoginRequest>(login);
 
-  // const { push } = useHistory(); 
+  // const { push } = useHistory();
 
   return (
     <div className="login-form">
@@ -36,7 +36,7 @@ const Login = (props: LoginProp) => {
       {loginMutation.isError && (
         <ErrorMessage message={loginMutation.error.message} />
       )}
-      {loginMutation.isSuccess && (props.setToken(loginMutation.data))}
+      {loginMutation.isSuccess && props.setToken(loginMutation.data)}
 
       <button onClick={() => loginMutation.mutate(loginRequest)}>Login</button>
     </div>

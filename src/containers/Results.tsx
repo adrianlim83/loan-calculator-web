@@ -4,17 +4,15 @@ import "./Results.css";
 import { useQuery } from "react-query";
 import { fetchQuotes } from "../actions/quotes";
 
-
 /**
  * Receive the quotes result from redux states, then render the table.
- * 
+ *
  * @param {*} param0 - quotes result retrieved through redux state
- * 
+ *
  * @returns results page
  */
 function Results() {
-
-  const {data, status} = useQuery("results", fetchQuotes);
+  const { data, status } = useQuery("results", fetchQuotes);
 
   const columns = useMemo(
     () => [
@@ -46,16 +44,16 @@ function Results() {
     ],
     []
   );
-  console.log(data)
-/**
+  console.log(data);
+  /**
    * Render the results through Table component
    * With a "New Qoute" button, which navigate user to enter new quote page (through router) when pressed
    */
   return (
     <>
-      {status === 'loading' && (<div>Loading data...</div>)}
-      {status === 'error' && (<div>Error fetching results</div>)}
-      {status === 'success' && (<Table columns={columns} data={data} />)}
+      {status === "loading" && <div>Loading data...</div>}
+      {status === "error" && <div>Error fetching results</div>}
+      {status === "success" && <Table columns={columns} data={data} />}
     </>
   );
 }

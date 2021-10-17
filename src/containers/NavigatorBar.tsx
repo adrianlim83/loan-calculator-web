@@ -5,11 +5,9 @@ import {
   Switch,
   Route,
   NavLink,
-  Redirect
 } from "react-router-dom";
 import Results from "./Results";
 import Quote from "./Quote";
-import Login from "../Login";
 
 /**
  * Render navigation bar with the transition route
@@ -17,7 +15,6 @@ import Login from "../Login";
  * @returns
  */
 export default class NavigatorBar extends React.Component<NavigatorBarProp> {
-
   render() {
     return (
       <Router>
@@ -36,7 +33,11 @@ export default class NavigatorBar extends React.Component<NavigatorBarProp> {
           </ul>
           <ul className="setting-bar">
             <li>
-              <NavLink activeClassName="active" to="/login" onClick={() => this.props.remove()}>
+              <NavLink
+                activeClassName="active"
+                to="/login"
+                onClick={() => this.props.remove()}
+              >
                 Logout
               </NavLink>
             </li>
@@ -48,10 +49,6 @@ export default class NavigatorBar extends React.Component<NavigatorBarProp> {
           </Route>
           <Route path="/quote">
             <Quote />
-          </Route>
-          <Route path="/login">
-            {!this.props.token && (<Login setToken={this.props.setToken} />)}
-            {this.props.token && (<Redirect to="/" />)}
           </Route>
         </Switch>
       </Router>
