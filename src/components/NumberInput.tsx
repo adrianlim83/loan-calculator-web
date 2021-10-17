@@ -5,7 +5,7 @@ import React from "react";
  * which accept decimal or non decimal, event function binding, and any
  * reusable attributes we can simplify on top of html input
  */
-export default class NumberInput extends React.Component<NumberInputParam> {
+export default class NumberInput extends React.Component<NumberInputProp> {
   /**
    * Declare default props' value if it doesn't supply
    */
@@ -15,7 +15,7 @@ export default class NumberInput extends React.Component<NumberInputParam> {
     value: "",
   };
 
-  constructor(param: NumberInputParam) {
+  constructor(param: NumberInputProp) {
     super(param);
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -49,7 +49,7 @@ export default class NumberInput extends React.Component<NumberInputParam> {
 /**
  * Contains the specific props type that can be passing
  */
-interface NumberInputParam {
+interface NumberInputProp {
   name: string;
   value: string;
   required: boolean;

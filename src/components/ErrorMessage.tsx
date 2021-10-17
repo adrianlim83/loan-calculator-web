@@ -7,7 +7,7 @@ import "./ErrorMessage.css";
  *
  * @returns quote page
  */
-export class ErrorMessage extends React.Component<Exception> {
+export class ErrorMessage extends React.Component<ExceptionProp> {
   render() {
     const { message } = this.props;
     return (
@@ -21,7 +21,7 @@ export class ErrorMessage extends React.Component<Exception> {
 /**
  * Contains the specific props type that can be passing
  */
-interface Exception {
+interface ExceptionProp {
   message: String;
 }
 
