@@ -6,6 +6,14 @@
   padding: 1rem;
 }
 
+.menu-bar {
+  width: 70%;
+}
+
+.setting-bar {
+  width: 30%;
+}
+
 ul {
   list-style: none;
   display: flex;

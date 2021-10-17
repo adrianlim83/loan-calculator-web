@@ -1,14 +1,21 @@
-import NavigatorBar from "./containers/NavigatorBar";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Login from "./Login";
+import Dashboard from "./containers/Dashboard";
+import useToken from "./components/useToken";
 
-function App() {
+const App = () => {
   const queryClient = new QueryClient();
 
+  const { token, setToken, remove } = useToken();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigatorBar />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        {!token && (<Login setToken={setToken} />)}
+        {token && (<Dashboard token={token} setToken={setToken} remove={remove}/>)}
+      </QueryClientProvider>
+    </>
   );
-}
+};
 
 export default App;
