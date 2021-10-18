@@ -26,8 +26,9 @@ Axios.interceptors.response.use(
   },
   async (error) => {
     if (error.response.status === 401) {
-      let token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
+      let token = localStorage.getItem(REACT_TOKEN_AUTH_KEY);
       if (token !== null) {
+        token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
         refresh(token)
           .then((response) => {
             // Success, update new token
