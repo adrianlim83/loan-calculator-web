@@ -4,28 +4,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 /**
  * @returns Dashbaord
  */
-const Dashboard = (props: DashboardProp) => {
+const Dashboard = () => {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigatorBar
-        token={props.token}
-        setToken={props.setToken}
-        remove={props.remove}
-      />
+      <NavigatorBar />
     </QueryClientProvider>
   );
 };
-
-interface DashboardProp {
-  token: any;
-  setToken: (token: TokenProp) => void;
-  remove: () => void;
-}
-
-interface TokenProp {
-  access_token: string;
-}
 
 export default Dashboard;

@@ -2,14 +2,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Login from "./containers/Login";
 import Dashboard from "./containers/Dashboard";
 import PublicRoute from "./containers/PublicRoute";
-import useToken from "./components/useToken";
 import PrivateRoute from "./containers/PrivateRoute";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { useAuth } from "./actions/auth";
 
 const App = () => {
   const queryClient = new QueryClient();
 
-  const { isAuthenticated, token, setToken, remove } = useToken();
+  const [isAuthenticated] = useAuth();
 
   return (
     <>
@@ -21,7 +21,7 @@ const App = () => {
               isAuthenticated={isAuthenticated}
               redirect="/"
             >
-              <Login setToken={setToken} />
+              <Login />
             </PublicRoute>
 
             <PrivateRoute
@@ -29,7 +29,7 @@ const App = () => {
               isAuthenticated={isAuthenticated}
               redirect="/login"
             >
-              <Dashboard token={token} setToken={setToken} remove={remove} />
+              <Dashboard />
             </PrivateRoute>
           </Switch>
         </Router>

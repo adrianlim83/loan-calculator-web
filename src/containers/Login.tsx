@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { login } from "../actions/credential";
+import { token } from "../actions/credential";
+import { login } from "../actions/auth";
 import ErrorMessage from "../components/ErrorMessage";
 import "./Login.css";
 
-const Login = (props: LoginProp) => {
+const Login = () => {
   const [loginRequest] = useState<LoginRequest>({
     email: "",
     password: "",
@@ -13,7 +14,7 @@ const Login = (props: LoginProp) => {
   /**
    * Mutate the login request
    */
-  const loginMutation = useMutation<TokenProp, Error, LoginRequest>(login);
+  const loginMutation = useMutation<TokenProp, Error, LoginRequest>(token);
 
   // const { push } = useHistory();
 
@@ -36,7 +37,7 @@ const Login = (props: LoginProp) => {
       {loginMutation.isError && (
         <ErrorMessage message={loginMutation.error.message} />
       )}
-      {loginMutation.isSuccess && props.setToken(loginMutation.data)}
+      {loginMutation.isSuccess && login(loginMutation.data)}
 
       <button onClick={() => loginMutation.mutate(loginRequest)}>Login</button>
     </div>
@@ -48,12 +49,9 @@ interface LoginRequest {
   password: string;
 }
 
-interface LoginProp {
-  setToken: (token: TokenProp) => void;
-}
-
 interface TokenProp {
   access_token: string;
+  refresh_token: string;
 }
 
 export default Login;

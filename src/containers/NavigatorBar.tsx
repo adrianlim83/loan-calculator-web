@@ -8,13 +8,14 @@ import {
 } from "react-router-dom";
 import Results from "./Results";
 import Quote from "./Quote";
+import { logout } from "../actions/auth";
 
 /**
  * Render navigation bar with the transition route
  * @param {*} param0
  * @returns
  */
-export default class NavigatorBar extends React.Component<NavigatorBarProp> {
+export default class NavigatorBar extends React.Component {
   render() {
     return (
       <Router>
@@ -36,7 +37,7 @@ export default class NavigatorBar extends React.Component<NavigatorBarProp> {
               <NavLink
                 activeClassName="active"
                 to="/login"
-                onClick={() => this.props.remove()}
+                onClick={() => logout()}
               >
                 Logout
               </NavLink>
@@ -54,14 +55,4 @@ export default class NavigatorBar extends React.Component<NavigatorBarProp> {
       </Router>
     );
   }
-}
-
-interface NavigatorBarProp {
-  token: TokenProp;
-  setToken: (token: TokenProp) => void;
-  remove: () => void;
-}
-
-interface TokenProp {
-  access_token: string;
 }
