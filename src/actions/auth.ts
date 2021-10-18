@@ -2,7 +2,8 @@
  * Create Auth Provider
  */
 import { createAuthProvider } from "react-token-auth";
-import axiosInstance, { REACT_TOKEN_AUTH_KEY } from "../extensions/axios";
+import Axios from "../extensions/Axios";
+import { REACT_TOKEN_AUTH_KEY } from "../extensions/SecureAxios";
 
 export const [useAuth, authFetch, login, logout] = createAuthProvider<{
   access_token: string;
@@ -19,7 +20,7 @@ export const [useAuth, authFetch, login, logout] = createAuthProvider<{
  * @returns 
  */
  export async function refresh(token: any) {
-  const {data} = await axiosInstance.post("/refresh", token, {
+  const {data} = await Axios.post("/refresh", token, {
     headers: {
       "Content-Type": "application/json"
     },
@@ -33,7 +34,7 @@ export const [useAuth, authFetch, login, logout] = createAuthProvider<{
  * @returns 
  */
  export async function token(credential: any) {
-  const {data} = await axiosInstance.post("/login", credential, {
+  const {data} = await Axios.post("/login", credential, {
     headers: {
       "Content-Type": "application/json"
     },

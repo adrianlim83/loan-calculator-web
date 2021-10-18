@@ -1,4 +1,4 @@
-import axiosInstance from "../extensions/axios";
+import SecureAxios from "../extensions/SecureAxios";
 
 /**
  * An action to fetch quotes result from server api
@@ -12,7 +12,7 @@ export async function fetchQuotes() {
   //            "residualValue": 0.0,
   //            "paymentAmount": 3226.72
   //        }]
-  const {data} = await axiosInstance.get("/loan/payment/quote/list");
+  const {data} = await SecureAxios.get("/loan/payment/quote/list");
   return data;
 }
 
@@ -22,7 +22,7 @@ export async function fetchQuotes() {
  * @param {*} quote - quote contains terms, loan amount, interest rate and residual value
  */
 export async function addQuote(quote) {
-  const {data} = await axiosInstance.post("/loan/payment/quote", quote, {
+  const {data} = await SecureAxios.post("/loan/payment/quote", quote, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -38,7 +38,7 @@ export async function addQuote(quote) {
  * @returns
  */
 export async function getApproximateQuote(quote) {
-  const {data} = await axiosInstance.get("/loan/approx/payment/quote", {
+  const {data} = await SecureAxios.get("/loan/approx/payment/quote", {
     params: quote
   });
   console.log(data)
