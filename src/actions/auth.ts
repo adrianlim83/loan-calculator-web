@@ -2,9 +2,7 @@
  * Create Auth Provider
  */
 import { createAuthProvider } from "react-token-auth";
-import axiosInstance from "../extensions/axios";
-
-export const REACT_TOKEN_AUTH_KEY = "REACT_TOKEN_AUTH_KEY";
+import axiosInstance, { REACT_TOKEN_AUTH_KEY } from "../extensions/axios";
 
 export const [useAuth, authFetch, login, logout] = createAuthProvider<{
   access_token: string;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { REACT_TOKEN_AUTH_KEY } from "../actions/auth";
 
 const baseURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -16,6 +15,7 @@ axiosInstance.defaults.headers = {
   Expires: "0"
 };
 
+export const REACT_TOKEN_AUTH_KEY = "REACT_TOKEN_AUTH_KEY";
 const token = JSON.parse(localStorage.getItem(REACT_TOKEN_AUTH_KEY));
 
 if (token !== null) {
