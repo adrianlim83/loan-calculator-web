@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { token } from "../actions/credential";
-import { login } from "../actions/auth";
+import { login, token } from "../actions/auth";
 import ErrorMessage from "../components/ErrorMessage";
 import "./Login.css";
 
@@ -15,8 +14,6 @@ const Login = () => {
    * Mutate the login request
    */
   const loginMutation = useMutation<TokenProp, Error, LoginRequest>(token);
-
-  // const { push } = useHistory();
 
   return (
     <div className="login-form">

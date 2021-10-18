@@ -17,7 +17,7 @@ axiosInstance.defaults.headers = {
 };
 
 const token = JSON.parse(localStorage.getItem(REACT_TOKEN_AUTH_KEY));
-console.log(token)
+
 if (token !== null) {
   axiosInstance.defaults.headers = {
     ...axiosInstance.defaults.headers,
