@@ -1,5 +1,6 @@
 import { refresh } from "../actions/auth";
 import Axios from "./Axios";
+import { encryptStorage } from "./EncryptStorage";
 
 export const REACT_TOKEN_AUTH_KEY = "REACT_TOKEN_AUTH_KEY";
 
@@ -9,7 +10,7 @@ export const REACT_TOKEN_AUTH_KEY = "REACT_TOKEN_AUTH_KEY";
 Axios.interceptors.request.use((request) => {
   let token = localStorage.getItem(REACT_TOKEN_AUTH_KEY);
   if (token !== null) {
-    token = JSON.parse(localStorage.getItem(REACT_TOKEN_AUTH_KEY));
+    token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
     request.headers["Authorization"] = `Bearer ${token.access_token}`;
   }
   return request;
@@ -25,23 +26,19 @@ Axios.interceptors.response.use(
   },
   async (error) => {
     if (error.response.status === 401) {
-      let token = localStorage.getItem(REACT_TOKEN_AUTH_KEY);
+      let token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
       if (token !== null) {
         refresh(token)
           .then((response) => {
             // Success, update new token
             const update = response.data;
-            console.log(update);
             if (update !== null) {
-              localStorage.setItem(
-                REACT_TOKEN_AUTH_KEY,
-                JSON.stringify(update)
-              );
+              encryptStorage.setItem(REACT_TOKEN_AUTH_KEY, update);
             }
           })
           .catch((error) => {
             // Invalid refresh token, remove token
-            localStorage.removeItem(REACT_TOKEN_AUTH_KEY);
+            encryptStorage.removeItem(REACT_TOKEN_AUTH_KEY);
             window.location.reload();
           });
       }
