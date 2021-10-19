@@ -8,9 +8,8 @@ export const REACT_TOKEN_AUTH_KEY = "REACT_TOKEN_AUTH_KEY";
  * Intercept each secure request, and attach a bearer token if it presents
  */
 Axios.interceptors.request.use((request) => {
-  let token = localStorage.getItem(REACT_TOKEN_AUTH_KEY);
-  if (token !== null) {
-    token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
+  const token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
+  if (token !== undefined) {
     request.headers["Authorization"] = `Bearer ${token.access_token}`;
   }
   return request;
@@ -26,9 +25,8 @@ Axios.interceptors.response.use(
   },
   async (error) => {
     if (error.response.status === 401) {
-      let token = localStorage.getItem(REACT_TOKEN_AUTH_KEY);
-      if (token !== null) {
-        token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
+      const token = encryptStorage.getItem(REACT_TOKEN_AUTH_KEY);
+      if (token !== undefined) {
         refresh(token)
           .then((response) => {
             // Success, update new token
