@@ -1,7 +1,6 @@
 {
   "name": "loan-calculator-web",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -24,14 +23,16 @@
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "react-scripts start",
+    "build:dev": "env-cmd -f ./environments/.env.development react-scripts build",
+    "build:prod": "env-cmd -f ./environments/.env.production react-scripts build",
+    "start": "env-cmd -f ./environments/.env react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start:dev": "env-cmd -f ./environments/.dev.env react-scripts start",
-    "start:prod": "env-cmd -f ./environments/.prod.env react-scripts start",
-    "start:local": "env-cmd -f ./environments/.local.env react-scripts start"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
