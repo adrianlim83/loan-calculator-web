@@ -1,17 +1,8 @@
 .navigation-bar {
-  background: #f9fafb;
-  list-style: none;
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   margin-bottom: 1rem;
   padding: 1rem;
-}
-
-.menu-bar {
-  width: 70%;
-}
-
-.setting-bar {
-  width: 30%;
 }
 
 ul {
@@ -34,4 +25,26 @@ ul li a:hover {
 
 .active {
   background: #0a66c2;
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media only screen and (max-width: 480px) {
+  .navigation-bar {
+    display: grid;
+    grid-template-columns: auto;
+    height: max-content;
+  }
+
+  .menu-bar, .setting-bar {
+    display: grid;
+    grid-template-columns: auto;
+    text-align: center;
+  }
+
+  ul {
+    gap: 2rem;
+  }
 }

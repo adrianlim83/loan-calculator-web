@@ -42,7 +42,7 @@ export default function Table({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return <td {...cell.getCellProps()} data-label={cell.render("Header")}>{cell.render("Cell")}</td>;
               })}
             </tr>
           );
