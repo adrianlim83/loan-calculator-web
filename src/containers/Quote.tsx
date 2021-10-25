@@ -5,6 +5,7 @@ import { addQuote, getApproximateQuote } from "../actions/quotes";
 import ErrorMessage from "../components/ErrorMessage";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
+import Button from "../components/Button";
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
@@ -52,7 +53,7 @@ const Quote = () => {
       {finalQuoteMutation.isSuccess && push("/")}
 
       <h2>Calculate Loan Payment</h2>
-      <div className="loan-payment">
+      <div className="loan-payment-form">
         <label>Term (in months):</label>
         <NumberInput
           name="terms"
@@ -97,17 +98,21 @@ const Quote = () => {
           }}
           required={true}
         />
-
-        <button onClick={() => finalQuoteMutation.mutate(quote)}>Save</button>
+      </div>
+      <div className="loan-payment-outcome">
+        {approximateQuoteMutation.isLoading && <label>Loading...</label>}
+        {approximateQuoteMutation.isSuccess && (
+          <>
+            <label>Loan Payment Amount:</label>
+            <label>{approximateQuoteMutation.data.paymentAmount}</label>
+          </>
+        )}
+      </div>
+      <div className="loan-payment-action">
+        <Button value="Save" onClick={() => finalQuoteMutation.mutate(quote)} />
 
         {approximateQuoteMutation.isError && (
           <ErrorMessage message={approximateQuoteMutation.error.message} />
-        )}
-        {approximateQuoteMutation.isLoading && <div>Loading...</div>}
-        {approximateQuoteMutation.isSuccess && (
-          <label>
-            Loan Payment Amount: {approximateQuoteMutation.data.paymentAmount}
-          </label>
         )}
       </div>
     </>

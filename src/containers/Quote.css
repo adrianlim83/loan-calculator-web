@@ -1,7 +1,11 @@
-.loan-payment {
+.loan-payment-form, .loan-payment-outcome {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
+  margin: 1rem;
+}
+
+.loan-payment-action {
   margin: 1rem;
 }
 
