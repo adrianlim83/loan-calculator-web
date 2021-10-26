@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { mediaQuery } from "./MediaQuery";
 
 // Create a reusable styled input component
 const StyledInput = styled.input`
+  width: 80%;
+  padding: 12px;
   margin: 10px;
-  border: 1 px solid #dddfe2;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 8px;
+  resize: vertical;
+  height: 1rem;
+
+  ${mediaQuery("tablet")`
+    width: 90%;
+  `};
 `;
 
 export default class Input extends React.Component<InputPrpp> {
@@ -14,9 +22,9 @@ export default class Input extends React.Component<InputPrpp> {
    * Declare default props' value if it doesn't supply
    */
   static defaultProps = {
-    type: 'text',
-    value: '',
-    required: false
+    type: "text",
+    value: "",
+    required: false,
   };
 
   constructor(param: InputPrpp) {

@@ -53,6 +53,10 @@ const Quote = () => {
       )}
       {finalQuoteMutation.isSuccess && push("/")}
 
+      {approximateQuoteMutation.isError && (
+        <ErrorMessage message={approximateQuoteMutation.error.message} />
+      )}
+
       <h2>Calculate Loan Payment</h2>
       <div className="loan-payment-form">
         <Label value="Term (in months):" />
@@ -111,10 +115,6 @@ const Quote = () => {
       </div>
       <div className="loan-payment-action">
         <Button value="Save" onClick={() => finalQuoteMutation.mutate(quote)} />
-
-        {approximateQuoteMutation.isError && (
-          <ErrorMessage message={approximateQuoteMutation.error.message} />
-        )}
       </div>
     </>
   );
