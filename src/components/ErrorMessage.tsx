@@ -22,7 +22,7 @@ export class ErrorMessage extends React.Component<ExceptionProp> {
  * Contains the specific props type that can be passing
  */
 interface ExceptionProp {
-  message: String;
+  message: String | undefined;
 }
 
 export default ErrorMessage;

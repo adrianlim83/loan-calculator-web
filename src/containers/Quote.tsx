@@ -6,6 +6,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import Button from "../components/Button";
+import Label from "../components/Label";
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
@@ -46,7 +47,7 @@ const Quote = () => {
    */
   return (
     <>
-      {finalQuoteMutation.isLoading && <div>Loading data...</div>}
+      {finalQuoteMutation.isLoading && <Label value="Saving..." />}
       {finalQuoteMutation.isError && (
         <ErrorMessage message={finalQuoteMutation.error.message} />
       )}
@@ -54,7 +55,7 @@ const Quote = () => {
 
       <h2>Calculate Loan Payment</h2>
       <div className="loan-payment-form">
-        <label>Term (in months):</label>
+        <Label value="Term (in months):" />
         <NumberInput
           name="terms"
           value={String(quote.terms)}
@@ -66,7 +67,7 @@ const Quote = () => {
           allowDecimals={false}
         />
 
-        <label>Loan Amount:</label>
+        <Label value="Loan Amount:" />
         <NumberInput
           name="loanAmount"
           value={String(quote.loanAmount)}
@@ -77,7 +78,7 @@ const Quote = () => {
           required={true}
         />
 
-        <label>Annual Interest Rate:</label>
+        <Label value="Annual Interest Rate:" />
         <NumberInput
           name="interestRate"
           value={String(quote.interestRate)}
@@ -88,7 +89,7 @@ const Quote = () => {
           required={true}
         />
 
-        <label>Residual Value:</label>
+        <Label value="Residual Value:" />
         <NumberInput
           name="residualValue"
           value={String(quote.residualValue)}
@@ -100,11 +101,11 @@ const Quote = () => {
         />
       </div>
       <div className="loan-payment-outcome">
-        {approximateQuoteMutation.isLoading && <label>Loading...</label>}
+        {approximateQuoteMutation.isLoading && <Label value="Calculating..." />}
         {approximateQuoteMutation.isSuccess && (
           <>
-            <label>Loan Payment Amount:</label>
-            <label>{approximateQuoteMutation.data.paymentAmount}</label>
+            <Label value="Loan Payment Amount:" />
+            <Label value={approximateQuoteMutation.data.paymentAmount} />
           </>
         )}
       </div>

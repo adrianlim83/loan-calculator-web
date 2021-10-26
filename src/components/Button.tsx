@@ -3,19 +3,23 @@ import styled from "styled-components";
 
 // Create a reusable styled button component
 const StyledButton = styled.button`
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  background-color: #007aff;
+  background-color: #1877f2;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   font-weight: 400;
-  margin: 40px 0;
+  margin: 20px 0;
+
+  border: none;
+  border-radius: 6px;
+  border-color: #4267b2;
+  font-size: 20px;
+  line-height: 48px;
+  padding: 0 16px;
+  width: auto;
 
   &:hover,
   &:focus {
     box-shadow: 0px 3px 20px 3px rgb(0 122 255 / 30%);
-    background-color: #007aff;
+    background-color: #4267b2;
   }
 `;
 
@@ -24,7 +28,7 @@ export default class Button extends React.Component<ButtonPrpp> {
    * Declare default props' value if it doesn't supply
    */
   static defaultProps = {
-    value: "",
+    value: ''
   };
 
   render() {

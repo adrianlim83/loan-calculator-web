@@ -9,23 +9,17 @@ const StyledInput = styled.input`
   padding: 8px;
 `;
 
-
-/**
- * Extended React component to render a specific input html tag
- * which accept decimal or non decimal, event function binding, and any
- * reusable attributes we can simplify on top of html input
- */
-export default class NumberInput extends React.Component<NumberInputProp> {
+export default class Input extends React.Component<InputPrpp> {
   /**
    * Declare default props' value if it doesn't supply
    */
   static defaultProps = {
-    required: false,
-    allowDecimals: true,
-    value: ''
+    type: 'text',
+    value: '',
+    required: false
   };
 
-  constructor(param: NumberInputProp) {
+  constructor(param: InputPrpp) {
     super(param);
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -40,17 +34,11 @@ export default class NumberInput extends React.Component<NumberInputProp> {
   render() {
     return (
       <StyledInput
-        type="number"
-        name={this.props.name}
-        value={this.props.value}
         onChange={this.onInputChange}
+        type={this.props.type}
+        name={this.props.name}
+        defaultValue={this.props.value}
         required={this.props.required}
-        step="any"
-        onKeyPress={(event) => {
-          if (!this.props.allowDecimals && !/[0-9]/.test(event.key)) {
-            event.preventDefault();
-          }
-        }}
       />
     );
   }
@@ -59,10 +47,10 @@ export default class NumberInput extends React.Component<NumberInputProp> {
 /**
  * Contains the specific props type that can be passing
  */
-interface NumberInputProp {
+interface InputPrpp {
+  type: string;
   name: string;
   value: string;
   required: boolean;
-  allowDecimals: boolean;
-  onChangeEvent: (v: string) => void; // Handle event upon value change
+  onChangeEvent: (v: string) => void; // Handle event upon onclick
 }

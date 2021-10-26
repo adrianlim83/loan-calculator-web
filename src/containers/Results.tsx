@@ -3,6 +3,8 @@ import Table from "../components/Table";
 import "./Results.css";
 import { useQuery } from "react-query";
 import { fetchQuotes } from "../actions/quotes";
+import Label from "../components/Label";
+import ErrorMessage from "../components/ErrorMessage";
 
 /**
  * Receive the quotes result from redux states, then render the table.
@@ -12,7 +14,7 @@ import { fetchQuotes } from "../actions/quotes";
  * @returns results page
  */
 function Results() {
-  const { data, status } = useQuery("results", fetchQuotes);
+  const { data, error, status } = useQuery<QuoteState, Error, String>("results", fetchQuotes);
 
   const columns = useMemo(
     () => [
@@ -51,11 +53,20 @@ function Results() {
    */
   return (
     <>
-      {status === "loading" && <div>Loading data...</div>}
-      {status === "error" && <div>Error fetching results</div>}
+      {status === "loading" && <Label value="Searching..." />}
+      {status === "error" && <ErrorMessage message={error?.message} />}
       {status === "success" && <Table columns={columns} data={data} />}
     </>
   );
+}
+
+interface QuoteState {
+  id: string;
+  terms: number;
+  loanAmount: number;
+  interestRate: number;
+  residualValue: number;
+  paymentAmount: number;
 }
 
 export default Results;

@@ -3,12 +3,14 @@ import { useMutation } from "react-query";
 import { login, token } from "../actions/auth";
 import Button from "../components/Button";
 import ErrorMessage from "../components/ErrorMessage";
+import Input from "../components/Input";
+import Label from "../components/Label";
 import "./Login.css";
 
 const Login = () => {
   const [loginRequest] = useState<LoginRequest>({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
 
   /**
@@ -18,18 +20,19 @@ const Login = () => {
 
   return (
     <div className="login-group">
-      <div className="login-form">
-        <label>Email</label>
-        <input
-          type="text"
-          onChange={(e) => (loginRequest.email = e.target.value)}
-          required
+      <div className="login-form shadow-box">
+        <Label value='Email'/>
+        <Input
+          name="email"
+          onChangeEvent={(v) => (loginRequest.email = v)}
+          required={true}
         />
-        <label>Password</label>
-        <input
+        <Label value='Password'/>
+        <Input
           type="password"
-          onChange={(e) => (loginRequest.password = e.target.value)}
-          required
+          name="password"
+          onChangeEvent={(v) => (loginRequest.password = v)}
+          required={true}
         />
 
         {loginMutation.isLoading && <div>Loading...</div>}
