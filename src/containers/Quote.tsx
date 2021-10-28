@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 import Button from "../components/Button";
 import Label from "../components/Label";
 import Datepicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
