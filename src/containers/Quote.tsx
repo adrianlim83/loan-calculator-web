@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 import Button from "../components/Button";
 import Label from "../components/Label";
 import Datepicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
@@ -115,7 +115,6 @@ const Quote = () => {
           onChange={(e) => date}
           showTimeSelect
           dateFormat="MM/dd/yyyy, hh:mm a"
-          className="Datepicker pa2"
           minDate={new Date()}
           placeholderText="Select a date"
         />
