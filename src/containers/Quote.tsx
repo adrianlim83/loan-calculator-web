@@ -7,6 +7,7 @@ import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 import Button from "../components/Button";
 import Label from "../components/Label";
+import Datepicker from "react-datepicker";
 
 /**
  * Container page which allowed user to input the quote for estimation payment or final payment
@@ -25,6 +26,9 @@ const Quote = () => {
     residualValue: 0.0,
     paymentAmount: 0,
   });
+
+  // TESTing only
+  const [date] = useState();
 
   /**
    * Mutate the quote creation upon saving
@@ -102,6 +106,17 @@ const Quote = () => {
             approximateQuoteMutation.mutate(quote);
           }}
           required={true}
+        />
+
+        <Label value="Test Date:" />
+        <Datepicker
+          required
+          onChange={(e) => date}
+          showTimeSelect
+          dateFormat="MM/dd/yyyy, hh:mm a"
+          className="Datepicker pa2"
+          minDate={new Date()}
+          placeholderText="Select a date"
         />
       </div>
       <div className="loan-payment-outcome">
